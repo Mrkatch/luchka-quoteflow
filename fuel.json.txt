@@ -1,0 +1,4 @@
+{
+  "torontoRack": 1.72,
+  "lastUpdated": "2026-04-09"
+}
