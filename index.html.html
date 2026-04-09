@@ -966,6 +966,7 @@
 <script>
 const STORE_KEY = 'luchka_quoteflow_vA17_multi_option';
 const QUOTES_KEY = 'luchka_quotes_vA17_multi_option';
+const DRAFT_KEY = 'luchka_current_quote_draft_v1';
 const TAX_META_KEY = 'luchka_tax_meta_v1';
 const TAX_SYNC_INTERVAL_MS = 24 * 60 * 60 * 1000;
 const OFFICIAL_FUEL_TAX_DEFAULTS = {
@@ -1038,6 +1039,90 @@ function parseStoredJson(key, fallback){
   }catch(err){
     console.warn(`Failed to parse ${key}, using fallback.`, err);
     return Array.isArray(fallback) ? [...fallback] : {...fallback};
+  }
+}
+
+function cloneData(value){
+  return JSON.parse(JSON.stringify(value));
+}
+function getCurrentQuoteDraft(){
+  return {
+    values: {
+      qCustomer: byId('qCustomer')?.value || '',
+      qJob: byId('qJob')?.value || '',
+      qQuoteNumber: byId('qQuoteNumber')?.value || '',
+      qQuoteDate: byId('qQuoteDate')?.value || '',
+      qMaterial: byId('qMaterial')?.value || '',
+      qNotes: byId('qNotes')?.value || '',
+      qTonnes: byId('qTonnes')?.value || '',
+      qLoads: byId('qLoads')?.value || '',
+      qKm: byId('qKm')?.value || '',
+      qTripMode: byId('qTripMode')?.value || 'round',
+      qFormat: byId('qFormat')?.value || 'tonne',
+      qRegularHours: byId('qRegularHours')?.value || '',
+      qOtHours: byId('qOtHours')?.value || '',
+      qManualFuel: byId('qManualFuel')?.value || '',
+      qCarrierMode: byId('qCarrierMode')?.value || 'delivered'
+    },
+    fuelStrategy: state.fuelStrategy || 'hybrid',
+    fuelMode: state.fuelMode || 'auto',
+    activeOptionId: state.activeOptionId || null,
+    quoteOptions: cloneData(state.quoteOptions || []),
+    materialLines: cloneData(state.materialLines || []),
+    quoteLineItems: cloneData(state.quoteLineItems || []),
+    openedQuoteId: state.openedQuoteId || null,
+    exportInputOverrides: cloneData(state.exportInputOverrides || {})
+  };
+}
+function persistCurrentQuoteDraft(){
+  try{
+    storage.set(DRAFT_KEY, JSON.stringify(getCurrentQuoteDraft()));
+  }catch(err){
+    console.warn('Could not persist current quote draft.', err);
+  }
+}
+function clearCurrentQuoteDraft(){
+  try{
+    storage.set(DRAFT_KEY, '');
+  }catch(err){
+    console.warn('Could not clear current quote draft.', err);
+  }
+}
+function restoreCurrentQuoteDraft(){
+  const raw = storage.get(DRAFT_KEY, '');
+  if(!raw) return false;
+  try{
+    const draft = JSON.parse(raw);
+    const values = draft?.values || {};
+    Object.entries(values).forEach(([id, value])=>{
+      const el = byId(id);
+      if(el && value != null) el.value = value;
+    });
+
+    state.materialLines = Array.isArray(draft?.materialLines) ? draft.materialLines.map(m=>({ ...m, id: m.id || makeMaterialId() })) : [];
+    state.quoteOptions = Array.isArray(draft?.quoteOptions) && draft.quoteOptions.length
+      ? draft.quoteOptions.map(o=>({ id: o.id || makeOptionId(), equipment: o.equipment || 'truckPup', result: o.result || null }))
+      : [{ id: makeOptionId(), equipment: 'truckPup', result: null }];
+    state.quoteLineItems = Array.isArray(draft?.quoteLineItems) ? draft.quoteLineItems.map(item=>({ ...item, id: item.id || makeQuoteLineId() })) : [];
+    state.activeOptionId = draft?.activeOptionId && state.quoteOptions.some(o=>o.id === draft.activeOptionId)
+      ? draft.activeOptionId
+      : state.quoteOptions[0].id;
+    state.openedQuoteId = draft?.openedQuoteId || null;
+    state.exportInputOverrides = { customerName:'', jobSite:'', quoteNumber:'', quoteDate:'', customerNotes:'', ...(draft?.exportInputOverrides || {}) };
+    state.fuelStrategy = draft?.fuelStrategy || state.fuelStrategy || 'hybrid';
+    state.fuelMode = draft?.fuelMode || state.fuelMode || 'auto';
+    if(byId('qCarrierMode') && values.qCarrierMode != null) byId('qCarrierMode').value = values.qCarrierMode;
+    syncFuelStrategyUi();
+    renderQuoteOptions();
+    renderMaterialLines();
+    renderQuoteBuildList();
+    updateQuoteStepBar();
+    updatePill();
+    return true;
+  }catch(err){
+    console.warn('Could not restore current quote draft.', err);
+    clearCurrentQuoteDraft();
+    return false;
   }
 }
 function getQuoteValidationErrors(){
@@ -1708,6 +1793,7 @@ function resetQuoteState(){
   if(typeof renderQuoteBuildList === 'function') renderQuoteBuildList();
   if(typeof applyDefaultsToQuote === 'function') applyDefaultsToQuote(collectSettings());
   if(typeof updatePill === 'function') updatePill();
+  clearCurrentQuoteDraft();
 }
 
 function startFreshQuote(){
@@ -1715,10 +1801,6 @@ function startFreshQuote(){
   goTab('quote');
 }
 document.querySelectorAll('.tabBtn').forEach(btn => btn.addEventListener('click', ()=>{
-  if(btn.dataset.tab === 'quote'){
-    startFreshQuote();
-    return;
-  }
   goTab(btn.dataset.tab);
 }));
 
@@ -3532,6 +3614,7 @@ function calculateQuote(){
       status.className = 'status bad';
       status.textContent = 'Input needed';
     }
+    persistCurrentQuoteDraft();
     return;
   }
 
@@ -3545,6 +3628,7 @@ function calculateQuote(){
   renderQuoteBuildList();
   updateFuelRecommendation();
   renderStrategyComparison();
+  persistCurrentQuoteDraft();
 }
 
 function getSavedQuotes(){
@@ -3920,6 +4004,8 @@ function openQuote(id){
   syncFuelStrategyUi();
   updatePill();
   goTab('quote');
+
+  persistCurrentQuoteDraft();
 
   if(q.resultSnapshot){
     const activeOption = state.quoteOptions.find(o=>o.id===state.activeOptionId);
@@ -4494,13 +4580,26 @@ function quickQuote(equipment){
   calculateQuote();
 }
 
+
+function bindCurrentQuoteDraftAutosave(){
+  ['qCustomer','qJob','qQuoteNumber','qQuoteDate','qMaterial','qNotes','qTonnes','qLoads','qKm','qTripMode','qFormat','qRegularHours','qOtHours','qManualFuel','qCarrierMode'].forEach(id=>{
+    const el = byId(id);
+    if(!el) return;
+    ['input','change'].forEach(evt=>{
+      el.addEventListener(evt, ()=> persistCurrentQuoteDraft());
+    });
+  });
+  window.addEventListener('beforeunload', ()=> persistCurrentQuoteDraft());
+}
+
 try{ loadSettings(); }catch(err){ console.warn('Load settings fallback', err); updateSetupHealth(collectSettings()); }
 if(byId('qQuoteDate') && !byId('qQuoteDate').value) byId('qQuoteDate').value = new Date().toISOString().slice(0,10);
 try{ initializeTaxControls(); }catch(err){ console.warn('Tax controls fallback', err); }
 updateLiveDataAvailabilityUi();
-if(!state.quoteOptions.length) addQuoteOption('truckPup', false);
+if(!restoreCurrentQuoteDraft() && !state.quoteOptions.length) addQuoteOption('truckPup', false);
 renderQuoteOptions();
 renderMaterialLines();
+bindCurrentQuoteDraftAutosave();
 try{ refreshSavedQuotes(); }catch(err){ console.warn('Saved quotes unavailable', err); }
 try{ calculateQuote(); }catch(err){ console.error('Initial calculation failed', err); }
 try{ runDiagnostics(false); }catch(err){ console.warn('Diagnostic warmup failed', err); }
