@@ -996,7 +996,7 @@ let state = {
   exportInputOverrides: { customerName:'', jobSite:'', quoteNumber:'', quoteDate:'', customerNotes:'' }
 };
 
-const RACK_API_CANDIDATES = [];
+const RACK_API_CANDIDATES = ['./fuel.json'];
 const TAX_CONFIG_CANDIDATES = ['./quoteflow_tax_defaults.json'];
 const memoryStore = {};
 const storage = {
@@ -1726,25 +1726,27 @@ async function refreshRackFuel(opts = {}){
   }
   const apiUrl = resolveRackApiUrl();
   if(!apiUrl){
-    setRackStatus('hosted fuel API is unavailable in local file mode. Using saved rack value.');
+    setRackStatus('No hosted fuel file found. Using saved rack value.');
     return null;
   }
   state.rackFetchInFlight = true;
-  setRackStatus('checking Petro-Canada rack…');
+  if(!opts.silent) setRackStatus('checking hosted Toronto rack fuel…');
   try{
     const response = await fetch(`${apiUrl}?ts=${Date.now()}`, {cache:'no-store'});
     if(!response.ok) throw new Error(`HTTP ${response.status}`);
     const payload = await response.json();
-    const price = Number(payload?.pricePerLitre);
+    const price = Number(payload?.torontoRack ?? payload?.pricePerLitre ?? payload?.rack ?? payload?.price);
+    const effective = payload?.lastUpdated || payload?.effectiveDate || payload?.effective || '';
     if(!Number.isFinite(price)) throw new Error('invalid fuel payload');
-    byId('f_autoRack').value = price.toFixed(4);
-    setRackStatus(`auto rack updated to ${price.toFixed(4)}/L${payload?.effective ? ` • ${payload.effective}` : ''}.`);
-    if(state.fuelMode === 'auto'){
-      calculateQuote();
-    }
+    if(byId('f_autoRack')) byId('f_autoRack').value = price.toFixed(4);
+    setRackStatus(`auto rack updated to ${price.toFixed(4)}/L${effective ? ` • ${effective}` : ''}.`);
+    try{
+      persistLiveSettings(collectSettings());
+    }catch(err){}
+    calculateQuote();
     return payload;
   }catch(err){
-    setRackStatus('could not refresh live rack. Using saved rack value.');
+    setRackStatus('could not refresh hosted rack file. Using saved rack value.');
     return null;
   }finally{
     state.rackFetchInFlight = false;
