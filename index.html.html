@@ -7,34 +7,37 @@
 <style>
   :root{
     --bg:#0F1115;
-    --panel:#161B22;
-    --panel2:#1C2430;
-    --text:#E8EDF5;
-    --muted:#97A3B6;
-    --accent:#3B82F6;
-    --accent2:#6EA8FF;
+    --panel:#161A22;
+    --panel2:#1C212B;
+    --text:#E5E7EB;
+    --muted:#8B95A7;
+    --accent:#2F6DF6;
+    --accent2:#67A1FF;
     --good:#22C55E;
     --warn:#F59E0B;
     --bad:#EF4444;
-    --line:#2C3747;
-    --card:#131922;
+    --line:#2A3140;
+    --card:#1C1F26;
   }
   *{box-sizing:border-box}
-  body{margin:0;font-family:Inter,Arial,sans-serif;background:linear-gradient(180deg,#0c1016,#0f141c 55%,#111821);color:var(--text)}
+  body{margin:0;font-family:Inter,Arial,sans-serif;background:linear-gradient(180deg,#0d1118,#101622 55%,#141b28);color:var(--text)}
   .app{max-width:1100px;margin:0 auto;padding:18px}
   .topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:16px}
-  .brand h1{font-size:1.4rem;margin:0}
+  .brand h1{font-size:1.55rem;margin:0;letter-spacing:-.03em}
+  .haulWord{color:#b7c0cf;font-weight:600}
+  .iqWord{color:#4c8dff;font-weight:900}
+  .rateTagline{font-size:.92rem;color:#8ea0b8;margin-top:4px}
   .brand p{margin:.35rem 0 0;color:var(--muted)}
-  .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(77,141,255,.12);border:1px solid rgba(77,141,255,.35);border-radius:999px;color:var(--accent2);font-size:.9rem}
+  .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(47,109,246,.12);border:1px solid rgba(47,109,246,.35);border-radius:999px;color:#bcd3ff;font-size:.9rem}
   .nav{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
   .nav button{background:var(--panel);border:1px solid var(--line);color:var(--text);padding:14px 10px;border-radius:16px;font-weight:700;cursor:pointer}
-  .nav button.active{background:linear-gradient(180deg,#1b2432,#151c27);border-color:#4D8DFF;box-shadow:0 8px 24px rgba(0,0,0,.22)}
+  .nav button.active{background:linear-gradient(180deg,#24344d,#1b273a);border-color:#4c8dff;box-shadow:0 8px 24px rgba(0,0,0,.2)}
   .screen{display:none}
   .screen.active{display:block}
   .grid{display:grid;gap:14px}
   .grid.two{grid-template-columns:1.25fr .95fr}
   .grid.cards{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-  .card{background:linear-gradient(180deg,var(--panel),var(--card));border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:0 10px 28px rgba(0,0,0,.22)}
+  .card{background:linear-gradient(180deg,var(--panel),var(--card));border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:0 6px 18px rgba(0,0,0,.18)}
   .card h2,.card h3{margin:.1rem 0 .75rem}
   .muted{color:var(--muted)}
   label{display:block;font-size:.9rem;color:#d6e0ed;margin-bottom:6px}
@@ -44,8 +47,8 @@
   .row{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
   .row3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
   .stack{display:grid;gap:12px}
-  .btn{background:linear-gradient(180deg,var(--accent2),var(--accent));color:#08101b;border:none;padding:12px 16px;border-radius:14px;font-weight:800;cursor:pointer;box-shadow:0 10px 24px rgba(59,130,246,.22)}
-  .btn.secondary{background:#18202b;color:var(--text);border:1px solid #314055}
+  .btn{background:linear-gradient(180deg,var(--accent2),var(--accent));color:#ffffff;border:none;padding:12px 16px;border-radius:14px;font-weight:800;cursor:pointer;box-shadow:0 6px 18px rgba(47,109,246,.25)}
+  .btn.secondary{background:#1B2330;color:var(--text);border:1px solid #334155}
   .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
   .btn.bad{background:rgba(255,93,93,.12);color:#ffd0d0;border:1px solid rgba(255,93,93,.35)}
   .rate{font-size:2.4rem;font-weight:900;margin:.25rem 0}
@@ -81,7 +84,7 @@
   .tag.off{color:#ffd1d1;border-color:rgba(255,93,93,.35);background:rgba(255,93,93,.08)}
   .hidden{display:none}
 
-  .quoteHero{background:radial-gradient(circle at top right, rgba(77,141,255,.16), transparent 35%), linear-gradient(180deg,#131b26,#0f151d);}
+  .quoteHero{background:radial-gradient(circle at top right, rgba(47,109,246,.16), transparent 35%), linear-gradient(180deg,#162131,#111923);}
   .kpiGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px}
   .kpi{padding:14px;border-radius:18px;background:#0b1525;border:1px solid #243a5e}
   .kpi .label{font-size:.82rem;color:var(--muted);margin-bottom:4px}
@@ -97,28 +100,28 @@
   .heroMetric.active{border-color:rgba(33,192,122,.35);background:rgba(33,192,122,.08)}
   .heroMetric.dim{opacity:.58}
   .heroMetric.danger{border-color:rgba(255,93,93,.35);background:rgba(255,93,93,.08)}
-  .callout{padding:12px 14px;border-radius:16px;background:rgba(77,141,255,.08);border:1px solid rgba(77,141,255,.25);color:var(--accent2)}
+  .callout{padding:12px 14px;border-radius:16px;background:rgba(47,109,246,.08);border:1px solid rgba(47,109,246,.25);color:#c3d8ff}
   .callout.good{background:rgba(33,192,122,.1);border-color:rgba(33,192,122,.28);color:#b7f7d7}
-  .callout.warn{background:rgba(77,141,255,.08);border-color:rgba(77,141,255,.25);color:var(--accent2)}
+  .callout.warn{background:rgba(47,109,246,.08);border-color:rgba(47,109,246,.25);color:#c3d8ff}
   .callout.bad{background:rgba(255,93,93,.1);border-color:rgba(255,93,93,.3);color:#ffd1d1}
   .exportChoices{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px}
   .exportChoice{padding:16px;border-radius:18px;border:1px solid var(--line);background:#0b1525;cursor:pointer;transition:.18s ease;display:grid;gap:6px;text-align:left}
   .exportChoice:hover{border-color:#3b5b8f;transform:translateY(-1px)}
-  .exportChoice.active{background:linear-gradient(180deg,#1c2d4f,#182845);border-color:#4f76b7;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+  .exportChoice.active{background:linear-gradient(180deg,#24344d,#1b273a);border-color:#4c8dff;box-shadow:0 8px 24px rgba(0,0,0,.2)}
   .exportChoice .title{font-weight:800;font-size:1rem;color:var(--text)}
   .exportChoice .desc{font-size:.86rem;color:var(--muted);line-height:1.35}
-  .proposalShell{background:#fff;color:#1b2430;border-radius:24px;padding:28px;border:1px solid #e7e9ef;box-shadow:0 16px 40px rgba(10,16,28,.08);border-top:6px solid #3B82F6}
+  .proposalShell{background:#fff;color:#1b2430;border-radius:18px;padding:20px 22px;border:1px solid #e7e9ef;box-shadow:0 12px 30px rgba(10,16,28,.06);width:100%;max-width:8in;margin:0 auto}
   .proposalShell .muted{color:#5f6b7a}
-  .proposalHero{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:10px}
-  .proposalRate{font-size:2.4rem;font-weight:900;line-height:1;letter-spacing:-.03em;margin-top:4px}
+  .proposalHero{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;margin-bottom:8px}
+  .proposalRate{font-size:2rem;font-weight:900;line-height:1;letter-spacing:-.03em;margin-top:2px}
   .proposalBrandMark{display:flex;justify-content:flex-end;align-items:flex-start}
-  .proposalLogo{height:88px;width:auto;object-fit:contain;display:block;border-radius:8px}
-  .proposalAccent{height:10px;border-radius:999px;margin:14px 0 6px;background:linear-gradient(90deg,#1f3656 0%,#3b82f6 42%,#6ea8ff 72%,#24466d 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.22)}
-  .proposalBlock{padding:14px 0;border-top:1px solid #e9edf3}
+  .proposalLogo{height:64px;width:auto;object-fit:contain;display:block;border-radius:6px}
+  .proposalAccent{height:8px;border-radius:999px;margin:10px 0 4px;background:linear-gradient(90deg,#274690 0%,#2f6df6 50%,#4f8cff 100%);box-shadow:none}
+  .proposalBlock{padding:10px 0;border-top:1px solid #e9edf3}
   .proposalGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
   .signatureScript{font-family:"Brush Script MT","Segoe Script","Lucida Handwriting",cursive;font-size:2.2rem;line-height:1.1;letter-spacing:.5px;color:#28374f}
-  .acceptanceGrid{display:grid;grid-template-columns:1.2fr 1.2fr .8fr;gap:16px;margin-top:18px}
-  .signLine{padding-top:32px;border-bottom:1px solid #99a4b3;font-size:.86rem;color:#5f6b7a}
+  .acceptanceGrid{display:grid;grid-template-columns:1.2fr 1.2fr .8fr;gap:12px;margin-top:12px}
+  .signLine{padding-top:24px;border-bottom:1px solid #99a4b3;font-size:.82rem;color:#5f6b7a}
   
   .optionStack{display:grid;gap:12px}
   .optionCard{padding:14px;border-radius:18px;background:#0b1525;border:1px solid #243a5e;display:grid;gap:12px}
@@ -153,7 +156,7 @@
   .setupStep{padding:12px;border-radius:16px;background:#0b1525;border:1px solid #233555;text-align:center}
   .setupStep strong{display:block;font-size:.82rem}
   .commandPanel{position:sticky;top:18px}
-  .heroRate{font-size:3.15rem;font-weight:950;letter-spacing:-.04em;margin:.15rem 0 .35rem;font-variant-numeric:tabular-nums;color:var(--accent2)}
+  .heroRate{font-size:3rem;font-weight:950;letter-spacing:-.04em;margin:.15rem 0 .15rem;font-variant-numeric:tabular-nums;color:#67A1FF}
   .rateSub{font-size:.95rem;color:var(--muted)}
   .heroMetrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
   .heroMetric{padding:14px;border-radius:18px;background:#0b1525;border:1px solid #243a5e}
@@ -342,12 +345,15 @@
   .exportInputGrid .full{grid-column:1/-1}
   .exportInputPanel input,.exportInputPanel textarea{background:#08111e}
 
+  @page{size: letter; margin: 0.4in;}
+
   @media print{
-    body{background:#fff;color:#111}
+    html, body{width:8.5in;height:auto;background:#fff;color:#111}
     .topbar,.nav,.screen,.exportModal .exportSheetHeader,.exportChoices,#proposalEditorMount{display:none !important}
     .exportModal{position:static;display:block !important;background:#fff;padding:0}
     .exportSheet{width:100%;max-height:none;overflow:visible;background:#fff;border:none;box-shadow:none;padding:0}
-    #exportPreview{margin-top:0}
+    #exportPreview{margin-top:0;width:100%}
+    .proposalShell{max-width:none;width:100%;margin:0;border:none;box-shadow:none;border-radius:0;padding:0}
   }
 
   @media (max-width: 860px){
@@ -362,8 +368,8 @@
 <div class="app">
   <div class="topbar">
     <div class="brand">
-      <h1 style="letter-spacing:-0.02em;"><span style="color:#A7B0BE;font-weight:500;">haul</span><span style="color:#4D8DFF;font-weight:900;">IQ</span></h1>
-      <p>Know your number. Trusted quoting for aggregate haulers with stronger margin protection and cleaner customer exports.</p>
+      <h1><span class="haulWord">haul</span><span class="iqWord">IQ</span></h1>
+      <p>Know your number. Built 2026.</p>
     </div>
     <div class="pill" id="fuelStatusPill">haulIQ Active • Protection On</div>
   </div>
@@ -381,9 +387,9 @@
         <h2>Know your number. Protect your margin. Send cleaner quotes.</h2>
         <p class="muted">Set your company rules once, then let haulIQ keep every quote inside your fuel strategy, profit target, and protection floor before it goes out the door.</p>
         <div class="actions">
-          <button class="btn" onclick="startFreshQuote()">Start Quote Builder</button>
+          <button class="btn" onclick="startFreshQuote()">Build New Quote</button>
           <button class="btn secondary" onclick="goTab('settings')">Complete Setup</button>
-          <button class="btn ghost" onclick="goTab('saved')">Open Quote History</button>
+          <button class="btn ghost" onclick="goTab('saved')">Open Saved Quotes</button>
         </div>
       </div>
       <div class="card">
@@ -400,7 +406,7 @@
     </div>
     <div class="grid cards" style="margin-top:14px">
       <div class="miniStat card">
-        <div class="muted">History</div>
+        <div class="muted">Saved Quotes</div>
         <div class="num" id="statQuotes">0</div>
       </div>
       <div class="miniStat card">
@@ -410,8 +416,8 @@
       <div class="card diagnosticCard" id="diagnosticCard">
         <div class="inline">
           <div>
-            <div class="muted">System health</div>
-            <div class="small" id="diagnosticSummary">Run a health check after major pricing changes before you trust the rate engine.</div>
+            <div class="muted">System diagnostic</div>
+            <div class="small" id="diagnosticSummary">Run a health check after major pricing changes before you trust the quote engine.</div>
           </div>
           <button class="btn secondary" type="button" onclick="runDiagnostics(true)">Run full diagnostic</button>
         </div>
@@ -425,7 +431,7 @@
   <section class="screen" id="quote">
     <div class="grid two">
       <div class="card">
-        <h2>Quote</h2>
+        <h2>New Quote</h2>
         <div class="quoteStepBar" id="quoteStepBar">
           <div class="quoteStep" id="quoteStep1"><strong>1. Job</strong><span>Customer, route, format</span></div>
           <div class="quoteStep" id="quoteStep2"><strong>2. Sources</strong><span>Add material/source cards</span></div>
@@ -445,8 +451,8 @@
           <div class="row">
             <div><label>Material</label><input id="qMaterial" placeholder="Topsoil, aggregate, etc."></div>
             <div class="card" style="padding:14px">
-              <div class="muted small">Quote summary</div>
-              <div>Enter the job once, add source cards, then let haulIQ build the quote lines for each selected equipment type.</div>
+              <div class="muted small">Quote structure</div>
+              <div>Enter the job once, add source cards, then let haulIQ builds the quote lines for each selected equipment type.</div>
             </div>
           </div>
           <div class="card" style="padding:14px">
@@ -520,7 +526,7 @@
           <div class="card" style="padding:14px">
             <div class="optionListHeader">
               <div>
-                <h3 style="margin:0">Customer quote builder</h3>
+                <h3 style="margin:0">Quote line generator</h3>
                 <div class="small muted">Add each material source once, choose the equipment types, and let haulIQ generate the delivered quote lines automatically.</div>
               </div>
               <div class="toggleRow">
@@ -542,12 +548,12 @@
 
       <div class="stack commandPanel">
         <div class="card quoteHero">
-          <div class="sectionEyebrow" id="commandPanelLabel">haulIQ command panel</div>
+          <div class="sectionEyebrow" id="commandPanelLabel">Command panel</div>
           <div class="inline" style="align-items:flex-start">
             <div>
               <div class="rateSub">Recommended Rate</div>
               <div class="heroRate" id="rateDisplay">$0.00</div>
-              <div style="font-size:.9rem;color:var(--muted);margin-top:-2px;margin-bottom:6px;">Know your number.</div>
+              <div class="rateTagline">Know your number.</div>
               <div class="rateSub" id="rateBasisDisplay">Per Tonne • Truck &amp; Pup</div>
             </div>
             <span id="protectStatus" class="status warn">Setup incomplete</span>
@@ -636,7 +642,7 @@
 
 
         <div class="card">
-          <h3>Rate summary</h3>
+          <h3>Calculation summary</h3>
           <div class="small muted" id="calcSummary">Complete setup in Settings so the quote engine can calculate using company defaults.</div>
           <div id="carrierSummary" class="pricingMatrix"></div>
         </div>
@@ -652,7 +658,7 @@
   <section class="screen" id="saved">
     <div class="card">
       <div class="inline">
-        <h2>History</h2>
+        <h2>Saved Quotes</h2>
         <button class="btn secondary" onclick="refreshSavedQuotes()">Refresh</button>
       </div>
       <div class="savedToolbar">
@@ -939,7 +945,7 @@
     <div class="exportInputPanel">
       <div>
         <h3>Quote inputs</h3>
-        <div class="smallNote">Reference only. Quote Inputs on the Quote Builder side own the facts so the export side stops repeating them.</div>
+        <div class="smallNote">Reference only. Quote Inputs on the New Quote side own the facts so the export side stops repeating them.</div>
       </div>
       <div class="exportInputGrid exportInputSummaryGrid">
         <div class="exportSummaryCard"><label>Customer</label><div id="exportCustomerName" class="exportSummaryValue">—</div></div>
@@ -1943,16 +1949,16 @@ function downloadPdfExport(){
   wrapper.innerHTML = freshPreview.innerHTML;
 
   const filename = mode === 'internal'
-    ? 'Luchka_Internal_Quote.pdf'
-    : 'Luchka_Customer_Quote.pdf';
+    ? 'haulIQ_Internal_Quote.pdf'
+    : 'haulIQ_Customer_Quote.pdf';
 
   const opt = {
-    margin: 0.25,
+    margin: [0.35, 0.35, 0.35, 0.35],
     filename,
     image: { type: 'jpeg', quality: 0.98 },
     html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
     jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
-    pagebreak: { mode: ['css', 'legacy'] }
+    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
   };
 
   html2pdf().set(opt).from(wrapper).save().catch(err => {
@@ -2632,7 +2638,7 @@ function renderProtectionExplain(result){
   if(!result.protectionEnabled){
     html = `
       <strong>Protection is turned off.</strong><br>
-      QuickFlow B1 is showing the first calculated number only.<br><br>
+      haulIQ is showing the first calculated number only.<br><br>
       <strong>What that means:</strong><br>
       • Expected profit at this rate: <strong>${money(rawProfit)}</strong><br>
       • Expected margin at this rate: <strong>${rawMargin.toFixed(1)}%</strong><br><br>
@@ -2641,7 +2647,7 @@ function renderProtectionExplain(result){
   }else if(hold){
     html = `
       <strong>This quote is being held because the first price is not safe enough to send.</strong><br><br>
-      <strong>What QuickFlow B1 checked:</strong><br>
+      <strong>What haulIQ checked:</strong><br>
       • Estimated profit at the first price: <strong>${money(rawProfit)}</strong><br>
       • Estimated margin at the first price: <strong>${rawMargin.toFixed(1)}%</strong><br>
       • Your minimum clear profit target: <strong>${money(minProfit)}</strong><br>
@@ -2651,14 +2657,14 @@ function renderProtectionExplain(result){
       <strong>What the math says:</strong><br>
       • Revenue needed to hit your profit target: <strong>${money(result.revenueFromProfit || 0)}</strong><br>
       • Revenue needed to hold your margin floor: <strong>${money(result.revenueFromMargin || 0)}</strong><br>
-      • QuickFlow B1 uses the higher number as the safe floor.<br><br>
+      • haulIQ uses the higher number as the safe floor.<br><br>
       <strong>In plain terms:</strong><br>
       the app stopped the quote because it still needs <strong>${money(liftValue)}</strong> more revenue before it should go out.
     `;
   }else if(result.protectionActive){
     html = `
       <strong>This quote was increased to protect the job.</strong><br><br>
-      <strong>What QuickFlow B1 checked:</strong><br>
+      <strong>What haulIQ checked:</strong><br>
       • Estimated job cost and first calculated selling price<br>
       • Your minimum clear profit target<br>
       • Your minimum margin floor<br><br>
@@ -2667,7 +2673,7 @@ function renderProtectionExplain(result){
       <strong>What the math says:</strong><br>
       • Revenue needed to hit minimum profit: <strong>${money(result.revenueFromProfit || 0)}</strong><br>
       • Revenue needed to hold your margin floor: <strong>${money(result.revenueFromMargin || 0)}</strong><br>
-      • QuickFlow B1 uses the higher number as the protected minimum<br>
+      • haulIQ uses the higher number as the protected minimum<br>
       • In this case, the winning rule was: <strong>${winningRuleLabel}</strong><br><br>
       <strong>What the app did:</strong><br>
       • Protection added: <strong>${money(liftValue)}</strong><br>
@@ -2680,7 +2686,7 @@ function renderProtectionExplain(result){
   }else{
     html = `
       <strong>This quote already clears your protection rules.</strong><br><br>
-      <strong>What QuickFlow B1 checked:</strong><br>
+      <strong>What haulIQ checked:</strong><br>
       • Expected profit at the first price: <strong>${money(rawProfit)}</strong><br>
       • Expected margin at the first price: <strong>${rawMargin.toFixed(1)}%</strong><br>
       • Minimum clear profit target: <strong>${money(minProfit)}</strong><br>
@@ -4467,7 +4473,7 @@ function runDiagnostics(showToast = false){
       card.classList.remove('good','warn','bad');
       card.classList.add(failCount ? 'warn' : 'good');
     }
-    if(summary) summary.textContent = failCount ? `${passCount}/${results.length} checks passed. Review the flagged items before using this build in front of customers.` : `All ${results.length} checks passed. QuickFlow B1 is behaving consistently on the core pricing paths.`;
+    if(summary) summary.textContent = failCount ? `${passCount}/${results.length} checks passed. Review the flagged items before using this build in front of customers.` : `All ${results.length} checks passed. haulIQ is behaving consistently on the core pricing paths.`;
     if(list) list.innerHTML = results.map(r => `<div class="diagnosticRow"><span>${escapeHtml(r.name)}</span><strong>${r.ok ? 'Pass' : 'Review'} • ${escapeHtml(r.detail)}</strong></div>`).join('');
   }catch(err){
     if(card){
