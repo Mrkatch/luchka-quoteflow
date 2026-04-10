@@ -3,32 +3,32 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>QuickFlow B1 • Carrier-Safe Pricing Engine</title>
+<title>haulIQ • Know your number.</title>
 <style>
   :root{
-    --bg:#08101b;
-    --panel:#101b2c;
-    --panel2:#18283f;
-    --text:#f4f7fc;
-    --muted:#b8c6d8;
-    --accent:#f4b942;
-    --accent2:#ffcf70;
-    --good:#21c07a;
-    --warn:#ffb14a;
-    --bad:#ff6b6b;
-    --line:#304868;
-    --card:#142236;
+    --bg:#0F1115;
+    --panel:#161B22;
+    --panel2:#1C2430;
+    --text:#E8EDF5;
+    --muted:#97A3B6;
+    --accent:#3B82F6;
+    --accent2:#6EA8FF;
+    --good:#22C55E;
+    --warn:#F59E0B;
+    --bad:#EF4444;
+    --line:#2C3747;
+    --card:#131922;
   }
   *{box-sizing:border-box}
-  body{margin:0;font-family:Inter,Arial,sans-serif;background:linear-gradient(180deg,#07101a,#0b1523 55%,#0f1a2b);color:var(--text)}
+  body{margin:0;font-family:Inter,Arial,sans-serif;background:linear-gradient(180deg,#0c1016,#0f141c 55%,#111821);color:var(--text)}
   .app{max-width:1100px;margin:0 auto;padding:18px}
   .topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:16px}
   .brand h1{font-size:1.4rem;margin:0}
   .brand p{margin:.35rem 0 0;color:var(--muted)}
-  .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(244,185,66,.12);border:1px solid rgba(244,185,66,.35);border-radius:999px;color:var(--accent2);font-size:.9rem}
+  .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(77,141,255,.12);border:1px solid rgba(77,141,255,.35);border-radius:999px;color:var(--accent2);font-size:.9rem}
   .nav{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
   .nav button{background:var(--panel);border:1px solid var(--line);color:var(--text);padding:14px 10px;border-radius:16px;font-weight:700;cursor:pointer}
-  .nav button.active{background:linear-gradient(180deg,#1c2d4f,#182845);border-color:#38588e;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+  .nav button.active{background:linear-gradient(180deg,#1b2432,#151c27);border-color:#4D8DFF;box-shadow:0 8px 24px rgba(0,0,0,.22)}
   .screen{display:none}
   .screen.active{display:block}
   .grid{display:grid;gap:14px}
@@ -44,8 +44,8 @@
   .row{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
   .row3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
   .stack{display:grid;gap:12px}
-  .btn{background:linear-gradient(180deg,var(--accent2),var(--accent));color:#241a07;border:none;padding:12px 16px;border-radius:14px;font-weight:800;cursor:pointer}
-  .btn.secondary{background:#16253f;color:var(--text);border:1px solid #2b446d}
+  .btn{background:linear-gradient(180deg,var(--accent2),var(--accent));color:#08101b;border:none;padding:12px 16px;border-radius:14px;font-weight:800;cursor:pointer;box-shadow:0 10px 24px rgba(59,130,246,.22)}
+  .btn.secondary{background:#18202b;color:var(--text);border:1px solid #314055}
   .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
   .btn.bad{background:rgba(255,93,93,.12);color:#ffd0d0;border:1px solid rgba(255,93,93,.35)}
   .rate{font-size:2.4rem;font-weight:900;margin:.25rem 0}
@@ -81,7 +81,7 @@
   .tag.off{color:#ffd1d1;border-color:rgba(255,93,93,.35);background:rgba(255,93,93,.08)}
   .hidden{display:none}
 
-  .quoteHero{background:radial-gradient(circle at top right, rgba(244,185,66,.16), transparent 35%), linear-gradient(180deg,#12203a,#0d182b);}
+  .quoteHero{background:radial-gradient(circle at top right, rgba(77,141,255,.16), transparent 35%), linear-gradient(180deg,#131b26,#0f151d);}
   .kpiGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px}
   .kpi{padding:14px;border-radius:18px;background:#0b1525;border:1px solid #243a5e}
   .kpi .label{font-size:.82rem;color:var(--muted);margin-bottom:4px}
@@ -97,9 +97,9 @@
   .heroMetric.active{border-color:rgba(33,192,122,.35);background:rgba(33,192,122,.08)}
   .heroMetric.dim{opacity:.58}
   .heroMetric.danger{border-color:rgba(255,93,93,.35);background:rgba(255,93,93,.08)}
-  .callout{padding:12px 14px;border-radius:16px;background:rgba(244,185,66,.08);border:1px solid rgba(244,185,66,.25);color:var(--accent2)}
+  .callout{padding:12px 14px;border-radius:16px;background:rgba(77,141,255,.08);border:1px solid rgba(77,141,255,.25);color:var(--accent2)}
   .callout.good{background:rgba(33,192,122,.1);border-color:rgba(33,192,122,.28);color:#b7f7d7}
-  .callout.warn{background:rgba(244,185,66,.08);border-color:rgba(244,185,66,.25);color:var(--accent2)}
+  .callout.warn{background:rgba(77,141,255,.08);border-color:rgba(77,141,255,.25);color:var(--accent2)}
   .callout.bad{background:rgba(255,93,93,.1);border-color:rgba(255,93,93,.3);color:#ffd1d1}
   .exportChoices{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px}
   .exportChoice{padding:16px;border-radius:18px;border:1px solid var(--line);background:#0b1525;cursor:pointer;transition:.18s ease;display:grid;gap:6px;text-align:left}
@@ -107,13 +107,13 @@
   .exportChoice.active{background:linear-gradient(180deg,#1c2d4f,#182845);border-color:#4f76b7;box-shadow:0 8px 24px rgba(0,0,0,.2)}
   .exportChoice .title{font-weight:800;font-size:1rem;color:var(--text)}
   .exportChoice .desc{font-size:.86rem;color:var(--muted);line-height:1.35}
-  .proposalShell{background:#fff;color:#1b2430;border-radius:24px;padding:28px;border:1px solid #e7e9ef;box-shadow:0 16px 40px rgba(10,16,28,.08)}
+  .proposalShell{background:#fff;color:#1b2430;border-radius:24px;padding:28px;border:1px solid #e7e9ef;box-shadow:0 16px 40px rgba(10,16,28,.08);border-top:6px solid #3B82F6}
   .proposalShell .muted{color:#5f6b7a}
   .proposalHero{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:10px}
   .proposalRate{font-size:2.4rem;font-weight:900;line-height:1;letter-spacing:-.03em;margin-top:4px}
   .proposalBrandMark{display:flex;justify-content:flex-end;align-items:flex-start}
   .proposalLogo{height:88px;width:auto;object-fit:contain;display:block;border-radius:8px}
-  .proposalAccent{height:12px;border-radius:999px;margin:14px 0 6px;background:linear-gradient(90deg,#6f0038 0%,#b21669 38%,#f05ea8 62%,#7a003d 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.22)}
+  .proposalAccent{height:10px;border-radius:999px;margin:14px 0 6px;background:linear-gradient(90deg,#1f3656 0%,#3b82f6 42%,#6ea8ff 72%,#24466d 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.22)}
   .proposalBlock{padding:14px 0;border-top:1px solid #e9edf3}
   .proposalGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
   .signatureScript{font-family:"Brush Script MT","Segoe Script","Lucida Handwriting",cursive;font-size:2.2rem;line-height:1.1;letter-spacing:.5px;color:#28374f}
@@ -153,7 +153,7 @@
   .setupStep{padding:12px;border-radius:16px;background:#0b1525;border:1px solid #233555;text-align:center}
   .setupStep strong{display:block;font-size:.82rem}
   .commandPanel{position:sticky;top:18px}
-  .heroRate{font-size:3rem;font-weight:950;letter-spacing:-.04em;margin:.15rem 0 .35rem;font-variant-numeric:tabular-nums}
+  .heroRate{font-size:3.15rem;font-weight:950;letter-spacing:-.04em;margin:.15rem 0 .35rem;font-variant-numeric:tabular-nums;color:var(--accent2)}
   .rateSub{font-size:.95rem;color:var(--muted)}
   .heroMetrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
   .heroMetric{padding:14px;border-radius:18px;background:#0b1525;border:1px solid #243a5e}
@@ -362,28 +362,28 @@
 <div class="app">
   <div class="topbar">
     <div class="brand">
-      <h1>QuickFlow B1</h1>
-      <p>Carrier-safe quoting built for aggregate haulers: faster pricing, stronger margin protection, cleaner customer exports.</p>
+      <h1 style="letter-spacing:-0.02em;"><span style="color:#A7B0BE;font-weight:500;">haul</span><span style="color:#4D8DFF;font-weight:900;">IQ</span></h1>
+      <p>Know your number. Trusted quoting for aggregate haulers with stronger margin protection and cleaner customer exports.</p>
     </div>
-    <div class="pill" id="fuelStatusPill">Fuel surcharge: On • Protection: On</div>
+    <div class="pill" id="fuelStatusPill">haulIQ Active • Protection On</div>
   </div>
 
   <div class="nav">
-    <button class="tabBtn active" data-tab="home">Home</button>
-    <button class="tabBtn" data-tab="quote">New Quote</button>
-    <button class="tabBtn" data-tab="saved">Saved Quotes</button>
+    <button class="tabBtn active" data-tab="home">Overview</button>
+    <button class="tabBtn" data-tab="quote">Quote</button>
+    <button class="tabBtn" data-tab="saved">History</button>
     <button class="tabBtn" data-tab="settings">Settings</button>
   </div>
 
   <section class="screen active" id="home">
     <div class="grid two">
       <div class="card hero">
-        <h2>Quote faster. Protect margin. Send cleaner quotes.</h2>
-        <p class="muted">Set your company rules once, then let QuickFlow B1 keep every quote inside your fuel strategy, profit target, and protection floor before it goes out the door.</p>
+        <h2>Know your number. Protect your margin. Send cleaner quotes.</h2>
+        <p class="muted">Set your company rules once, then let haulIQ keep every quote inside your fuel strategy, profit target, and protection floor before it goes out the door.</p>
         <div class="actions">
-          <button class="btn" onclick="startFreshQuote()">Build New Quote</button>
+          <button class="btn" onclick="startFreshQuote()">Start Quote Builder</button>
           <button class="btn secondary" onclick="goTab('settings')">Complete Setup</button>
-          <button class="btn ghost" onclick="goTab('saved')">Open Saved Quotes</button>
+          <button class="btn ghost" onclick="goTab('saved')">Open Quote History</button>
         </div>
       </div>
       <div class="card">
@@ -400,7 +400,7 @@
     </div>
     <div class="grid cards" style="margin-top:14px">
       <div class="miniStat card">
-        <div class="muted">Saved Quotes</div>
+        <div class="muted">History</div>
         <div class="num" id="statQuotes">0</div>
       </div>
       <div class="miniStat card">
@@ -410,8 +410,8 @@
       <div class="card diagnosticCard" id="diagnosticCard">
         <div class="inline">
           <div>
-            <div class="muted">System diagnostic</div>
-            <div class="small" id="diagnosticSummary">Run a health check after major pricing changes before you trust the quote engine.</div>
+            <div class="muted">System health</div>
+            <div class="small" id="diagnosticSummary">Run a health check after major pricing changes before you trust the rate engine.</div>
           </div>
           <button class="btn secondary" type="button" onclick="runDiagnostics(true)">Run full diagnostic</button>
         </div>
@@ -425,7 +425,7 @@
   <section class="screen" id="quote">
     <div class="grid two">
       <div class="card">
-        <h2>New Quote</h2>
+        <h2>Quote</h2>
         <div class="quoteStepBar" id="quoteStepBar">
           <div class="quoteStep" id="quoteStep1"><strong>1. Job</strong><span>Customer, route, format</span></div>
           <div class="quoteStep" id="quoteStep2"><strong>2. Sources</strong><span>Add material/source cards</span></div>
@@ -445,8 +445,8 @@
           <div class="row">
             <div><label>Material</label><input id="qMaterial" placeholder="Topsoil, aggregate, etc."></div>
             <div class="card" style="padding:14px">
-              <div class="muted small">Quote structure</div>
-              <div>Enter the job once, add source cards, then let QuickFlow build the quote lines for each selected equipment type.</div>
+              <div class="muted small">Quote summary</div>
+              <div>Enter the job once, add source cards, then let haulIQ build the quote lines for each selected equipment type.</div>
             </div>
           </div>
           <div class="card" style="padding:14px">
@@ -520,8 +520,8 @@
           <div class="card" style="padding:14px">
             <div class="optionListHeader">
               <div>
-                <h3 style="margin:0">Quote line generator</h3>
-                <div class="small muted">Add each material source once, choose the equipment types, and let QuickFlow B1 generate the delivered quote lines automatically.</div>
+                <h3 style="margin:0">Customer quote builder</h3>
+                <div class="small muted">Add each material source once, choose the equipment types, and let haulIQ generate the delivered quote lines automatically.</div>
               </div>
               <div class="toggleRow">
                 <select id="qCarrierMode" style="min-width:180px">
@@ -542,23 +542,24 @@
 
       <div class="stack commandPanel">
         <div class="card quoteHero">
-          <div class="sectionEyebrow" id="commandPanelLabel">Command panel</div>
+          <div class="sectionEyebrow" id="commandPanelLabel">haulIQ command panel</div>
           <div class="inline" style="align-items:flex-start">
             <div>
-              <div class="rateSub">Protected rate</div>
+              <div class="rateSub">Recommended Rate</div>
               <div class="heroRate" id="rateDisplay">$0.00</div>
+              <div style="font-size:.9rem;color:var(--muted);margin-top:-2px;margin-bottom:6px;">Know your number.</div>
               <div class="rateSub" id="rateBasisDisplay">Per Tonne • Truck &amp; Pup</div>
             </div>
             <span id="protectStatus" class="status warn">Setup incomplete</span>
           </div>
-          <div class="callout" id="quoteCallout">QuickFlow B1 checks the rate, then pressure-tests it against profit, margin, and fuel before you send it.</div>
+          <div class="callout" id="quoteCallout">haulIQ checks the rate, then pressure-tests it against profit, margin, and fuel before you send it.</div>
           <div class="liveWarningCard hidden" id="liveWarningCard" aria-live="polite">
             <div class="liveWarningTitle" id="liveWarningTitle">Live warning</div>
-            <div class="small" id="liveWarningBody">QuickFlow will flag this area before protection has to step in.</div>
+            <div class="small" id="liveWarningBody">haulIQ will flag this area before protection has to step in.</div>
           </div>
           <div class="confidencePanel hidden" id="confidencePanel" aria-live="polite">
             <div class="inline"><strong id="confidenceTitle">Quote confidence</strong><span class="tag on" id="confidenceBadge">Safe</span></div>
-            <div class="small" id="confidenceBody">QuickFlow B1 will tell you how dependable this quote looks before you export it.</div>
+            <div class="small" id="confidenceBody">haulIQ will tell you how dependable this quote looks before you export it.</div>
             <div class="confidenceGrid">
               <div class="confidenceCell"><div class="label">Confidence status</div><div class="value" id="confidenceStateValue">—</div></div>
               <div class="confidenceCell"><div class="label">Recommended next move</div><div class="value" id="confidenceActionValue">Complete setup first</div></div>
@@ -566,7 +567,7 @@
           </div>
           <div class="protectionExplainCard hidden" id="protectionExplainCard" aria-live="polite">
             <div class="inline"><strong id="protectionExplainTitle">Why this quote was protected</strong><span class="tag on" id="protectionExplainBadge">Protection check</span></div>
-            <div class="small muted" id="protectionExplainReason">QuickFlow B1 is checking whether the first number is still safe for your business.</div>
+            <div class="small muted" id="protectionExplainReason">haulIQ is checking whether the first number is still safe for your business.</div>
             <div class="explainGrid">
               <div class="explainCell"><div class="label">Revenue needed to hit minimum profit</div><div class="value" id="protectionProfitPrice">$0.00</div></div>
               <div class="explainCell"><div class="label">Revenue needed to hold your margin</div><div class="value" id="protectionMarginPrice">$0.00</div></div>
@@ -635,7 +636,7 @@
 
 
         <div class="card">
-          <h3>Calculation summary</h3>
+          <h3>Rate summary</h3>
           <div class="small muted" id="calcSummary">Complete setup in Settings so the quote engine can calculate using company defaults.</div>
           <div id="carrierSummary" class="pricingMatrix"></div>
         </div>
@@ -644,14 +645,14 @@
 
     <div class="footerbar">
       <button class="btn secondary" onclick="saveQuote()">Save Draft</button>
-      <button class="btn" onclick="prepareExport()">Export Quote</button>
+      <button class="btn" onclick="prepareExport()">Generate Customer Quote</button>
     </div>
   </section>
 
   <section class="screen" id="saved">
     <div class="card">
       <div class="inline">
-        <h2>Saved Quotes</h2>
+        <h2>History</h2>
         <button class="btn secondary" onclick="refreshSavedQuotes()">Refresh</button>
       </div>
       <div class="savedToolbar">
@@ -938,7 +939,7 @@
     <div class="exportInputPanel">
       <div>
         <h3>Quote inputs</h3>
-        <div class="smallNote">Reference only. Quote Inputs on the New Quote side own the facts so the export side stops repeating them.</div>
+        <div class="smallNote">Reference only. Quote Inputs on the Quote Builder side own the facts so the export side stops repeating them.</div>
       </div>
       <div class="exportInputGrid exportInputSummaryGrid">
         <div class="exportSummaryCard"><label>Customer</label><div id="exportCustomerName" class="exportSummaryValue">—</div></div>
