@@ -401,7 +401,7 @@
     .nav{grid-template-columns:repeat(2,1fr)}
   }
 
-/* INTERNAL EXPORT: force readable dark theme without touching customer proposal */
+/* INTERNAL EXPORT: match customer quote white background, dark text, and clean typography */
 #exportPreview[data-export-mode="internal"] .internalExportShell,
 #exportPreview[data-export-mode="internal"] .internalExportShell .card,
 #exportPreview[data-export-mode="internal"] .internalExportShell .miniStat,
@@ -418,15 +418,55 @@
 #exportPreview[data-export-mode="internal"] .internalExportShell .heroMetric,
 #exportPreview[data-export-mode="internal"] .internalExportShell .kpi,
 #exportPreview[data-export-mode="internal"] .internalExportShell .callout,
-#exportPreview[data-export-mode="internal"] .internalExportShell [style*="background:#fbfcfe"]{
-  background:#0b1525 !important;
-  color:#E5E7EB !important;
-  border-color:#2A3140 !important;
+#exportPreview[data-export-mode="internal"] .internalExportShell [style*="background:#fbfcfe"],
+.pdfPage .internalExportShell,
+.pdfPage .internalExportShell .card,
+.pdfPage .internalExportShell .miniStat,
+.pdfPage .internalExportShell .summaryItem,
+.pdfPage .internalExportShell .pricingMatrixRow,
+.pdfPage .internalExportShell .diagnosticCard,
+.pdfPage .internalExportShell .materialLineCard,
+.pdfPage .internalExportShell .confidenceCell,
+.pdfPage .internalExportShell .explainCell,
+.pdfPage .internalExportShell .pricingMiniCell,
+.pdfPage .internalExportShell .diagnosticRow,
+.pdfPage .internalExportShell .insightRow,
+.pdfPage .internalExportShell .quoteStep,
+.pdfPage .internalExportShell .heroMetric,
+.pdfPage .internalExportShell .kpi,
+.pdfPage .internalExportShell .callout,
+.pdfPage .internalExportShell [style*="background:#fbfcfe"],
+.printRoot .internalExportShell,
+.printRoot .internalExportShell .card,
+.printRoot .internalExportShell .miniStat,
+.printRoot .internalExportShell .summaryItem,
+.printRoot .internalExportShell .pricingMatrixRow,
+.printRoot .internalExportShell .diagnosticCard,
+.printRoot .internalExportShell .materialLineCard,
+.printRoot .internalExportShell .confidenceCell,
+.printRoot .internalExportShell .explainCell,
+.printRoot .internalExportShell .pricingMiniCell,
+.printRoot .internalExportShell .diagnosticRow,
+.printRoot .internalExportShell .insightRow,
+.printRoot .internalExportShell .quoteStep,
+.printRoot .internalExportShell .heroMetric,
+.printRoot .internalExportShell .kpi,
+.printRoot .internalExportShell .callout,
+.printRoot .internalExportShell [style*="background:#fbfcfe"]{
+  background:#ffffff !important;
+  color:#1b2430 !important;
+  border-color:#e7e9ef !important;
+  box-shadow:none !important;
 }
 
 #exportPreview[data-export-mode="internal"] .internalExportShell,
-#exportPreview[data-export-mode="internal"] .internalExportShell *{
-  color:#E5E7EB;
+#exportPreview[data-export-mode="internal"] .internalExportShell *,
+.pdfPage .internalExportShell,
+.pdfPage .internalExportShell *,
+.printRoot .internalExportShell,
+.printRoot .internalExportShell *{
+  color:#1b2430 !important;
+  font-family:Inter,Arial,sans-serif !important;
 }
 
 #exportPreview[data-export-mode="internal"] .internalExportShell h1,
@@ -434,13 +474,29 @@
 #exportPreview[data-export-mode="internal"] .internalExportShell h3,
 #exportPreview[data-export-mode="internal"] .internalExportShell strong,
 #exportPreview[data-export-mode="internal"] .internalExportShell .title,
-#exportPreview[data-export-mode="internal"] .internalExportShell [style*="color:#1b2430"]{
-  color:#ffffff !important;
+#exportPreview[data-export-mode="internal"] .internalExportShell [style*="color:#1b2430"],
+.pdfPage .internalExportShell h1,
+.pdfPage .internalExportShell h2,
+.pdfPage .internalExportShell h3,
+.pdfPage .internalExportShell strong,
+.pdfPage .internalExportShell .title,
+.pdfPage .internalExportShell [style*="color:#1b2430"],
+.printRoot .internalExportShell h1,
+.printRoot .internalExportShell h2,
+.printRoot .internalExportShell h3,
+.printRoot .internalExportShell strong,
+.printRoot .internalExportShell .title,
+.printRoot .internalExportShell [style*="color:#1b2430"]{
+  color:#1b2430 !important;
 }
 
 #exportPreview[data-export-mode="internal"] .internalExportShell .muted,
-#exportPreview[data-export-mode="internal"] .internalExportShell [style*="color:#5f6b7a"]{
-  color:#A9B4C7 !important;
+#exportPreview[data-export-mode="internal"] .internalExportShell [style*="color:#5f6b7a"],
+.pdfPage .internalExportShell .muted,
+.pdfPage .internalExportShell [style*="color:#5f6b7a"],
+.printRoot .internalExportShell .muted,
+.printRoot .internalExportShell [style*="color:#5f6b7a"]{
+  color:#5f6b7a !important;
 }
 
 #exportPreview[data-export-mode="internal"] .internalExportShell table,
@@ -448,9 +504,43 @@
 #exportPreview[data-export-mode="internal"] .internalExportShell td,
 #exportPreview[data-export-mode="internal"] .internalExportShell .divider,
 #exportPreview[data-export-mode="internal"] .internalExportShell [style*="border-bottom:1px solid #e9edf3"],
-#exportPreview[data-export-mode="internal"] .internalExportShell [style*="border:1px solid #e9edf3"]{
-  border-color:#2A3140 !important;
-  color:#E5E7EB !important;
+#exportPreview[data-export-mode="internal"] .internalExportShell [style*="border:1px solid #e9edf3"],
+.pdfPage .internalExportShell table,
+.pdfPage .internalExportShell th,
+.pdfPage .internalExportShell td,
+.pdfPage .internalExportShell .divider,
+.pdfPage .internalExportShell [style*="border-bottom:1px solid #e9edf3"],
+.pdfPage .internalExportShell [style*="border:1px solid #e9edf3"],
+.printRoot .internalExportShell table,
+.printRoot .internalExportShell th,
+.printRoot .internalExportShell td,
+.printRoot .internalExportShell .divider,
+.printRoot .internalExportShell [style*="border-bottom:1px solid #e9edf3"],
+.printRoot .internalExportShell [style*="border:1px solid #e9edf3"]{
+  border-color:#e7e9ef !important;
+  color:#1b2430 !important;
+}
+
+#exportPreview[data-export-mode="internal"] .internalExportShell .status.good,
+.pdfPage .internalExportShell .status.good,
+.printRoot .internalExportShell .status.good{
+  background:rgba(33,192,122,.10) !important;
+  color:#166534 !important;
+  border:1px solid rgba(33,192,122,.28) !important;
+}
+#exportPreview[data-export-mode="internal"] .internalExportShell .status.warn,
+.pdfPage .internalExportShell .status.warn,
+.printRoot .internalExportShell .status.warn{
+  background:rgba(245,158,11,.10) !important;
+  color:#92400e !important;
+  border:1px solid rgba(245,158,11,.28) !important;
+}
+#exportPreview[data-export-mode="internal"] .internalExportShell .status.bad,
+.pdfPage .internalExportShell .status.bad,
+.printRoot .internalExportShell .status.bad{
+  background:rgba(239,68,68,.10) !important;
+  color:#991b1b !important;
+  border:1px solid rgba(239,68,68,.28) !important;
 }
 
 
@@ -461,10 +551,42 @@
 #exportPreview .proposalTagline,
 #exportPreview .proposalBuilt,
 #exportPreview .proposalLogoBadge,
+#exportPreview .proposalLogo,
+#exportPreview .proposalLogoWide,
 #exportPreview .brandLockup,
 #exportPreview .brandMark,
 #exportPreview .brandText,
-#exportPreview .brandBuilt{
+#exportPreview .brandBuilt,
+#exportPreview .brandLogoImg,
+#exportPreview .brandLogoImgWide,
+.pdfPage .proposalBrandLockup,
+.pdfPage .proposalBrandMark,
+.pdfPage .proposalWordmark,
+.pdfPage .proposalTagline,
+.pdfPage .proposalBuilt,
+.pdfPage .proposalLogoBadge,
+.pdfPage .proposalLogo,
+.pdfPage .proposalLogoWide,
+.pdfPage .brandLockup,
+.pdfPage .brandMark,
+.pdfPage .brandText,
+.pdfPage .brandBuilt,
+.pdfPage .brandLogoImg,
+.pdfPage .brandLogoImgWide,
+.printRoot .proposalBrandLockup,
+.printRoot .proposalBrandMark,
+.printRoot .proposalWordmark,
+.printRoot .proposalTagline,
+.printRoot .proposalBuilt,
+.printRoot .proposalLogoBadge,
+.printRoot .proposalLogo,
+.printRoot .proposalLogoWide,
+.printRoot .brandLockup,
+.printRoot .brandMark,
+.printRoot .brandText,
+.printRoot .brandBuilt,
+.printRoot .brandLogoImg,
+.printRoot .brandLogoImgWide{
   display:none !important;
 }
 
@@ -1442,7 +1564,7 @@ function buildCustomerProposalData(s, active, quoteBuildRows, optionResults, del
     companyName: s.company?.name || 'Your Company',
     companyContact: s.company?.contact || '',
     companyEmail: s.company?.email || '',
-    companyPhone: s.company?.phone || '905.259.7219',
+    companyPhone: s.company?.phone || '',
     companyWebsite: s.company?.website || '',
     customerName: active.customer || '—',
     projectTitle: active.job || '—',
@@ -1572,6 +1694,7 @@ function renderCustomerProposalPreview(){
   const fuelNote = escapeHtml(getProposalEditValue('fuelNote', data.fuelNote || ''));
   const acceptanceText = escapeHtml(getProposalEditValue('acceptanceText', data.acceptanceText || ''));
   const companyName = escapeHtml(data.companyName || 'Your Company');
+  const signatureName = escapeHtml(data.companyContact || data.companyName || '');
   const companyContactLine = [data.companyContact, data.companyEmail, data.companyPhone, data.companyWebsite]
     .filter(Boolean)
     .map(escapeHtml)
@@ -1702,7 +1825,7 @@ function renderCustomerProposalPreview(){
         <div class="proposalGrid">
           <div>
             <div class="muted" style="font-size:.82rem">Prepared by</div>
-            <div class="signatureScript" style="margin-top:6px">Mark Katchaluba</div>
+            <div class="signatureScript" style="margin-top:6px">${signatureName}</div>
           </div>
           <div>
             <div class="muted" style="font-size:.82rem">${acceptanceText}</div>
@@ -2083,58 +2206,83 @@ function openExportPrintDialog(mode){
         html,body{width:auto;height:auto}
       }
     
-/* INTERNAL EXPORT: force readable dark theme without touching customer proposal */
-#exportPreview[data-export-mode="internal"] .internalExportShell,
-#exportPreview[data-export-mode="internal"] .internalExportShell .card,
-#exportPreview[data-export-mode="internal"] .internalExportShell .miniStat,
-#exportPreview[data-export-mode="internal"] .internalExportShell .summaryItem,
-#exportPreview[data-export-mode="internal"] .internalExportShell .pricingMatrixRow,
-#exportPreview[data-export-mode="internal"] .internalExportShell .diagnosticCard,
-#exportPreview[data-export-mode="internal"] .internalExportShell .materialLineCard,
-#exportPreview[data-export-mode="internal"] .internalExportShell .confidenceCell,
-#exportPreview[data-export-mode="internal"] .internalExportShell .explainCell,
-#exportPreview[data-export-mode="internal"] .internalExportShell .pricingMiniCell,
-#exportPreview[data-export-mode="internal"] .internalExportShell .diagnosticRow,
-#exportPreview[data-export-mode="internal"] .internalExportShell .insightRow,
-#exportPreview[data-export-mode="internal"] .internalExportShell .quoteStep,
-#exportPreview[data-export-mode="internal"] .internalExportShell .heroMetric,
-#exportPreview[data-export-mode="internal"] .internalExportShell .kpi,
-#exportPreview[data-export-mode="internal"] .internalExportShell .callout,
-#exportPreview[data-export-mode="internal"] .internalExportShell [style*="background:#fbfcfe"]{
-  background:#0b1525 !important;
-  color:#E5E7EB !important;
-  border-color:#2A3140 !important;
+/* PRINT + PDF EXPORT: remove branding and keep internal export in the same light style as customer */
+.printRoot .proposalBrandLockup,
+.printRoot .proposalBrandMark,
+.printRoot .proposalWordmark,
+.printRoot .proposalTagline,
+.printRoot .proposalBuilt,
+.printRoot .proposalLogoBadge,
+.printRoot .proposalLogo,
+.printRoot .proposalLogoWide,
+.printRoot .brandLockup,
+.printRoot .brandMark,
+.printRoot .brandText,
+.printRoot .brandBuilt,
+.printRoot .brandLogoImg,
+.printRoot .brandLogoImgWide{
+  display:none !important;
 }
 
-#exportPreview[data-export-mode="internal"] .internalExportShell,
-#exportPreview[data-export-mode="internal"] .internalExportShell *{
-  color:#E5E7EB;
+.printRoot .internalExportShell,
+.printRoot .internalExportShell .card,
+.printRoot .internalExportShell .miniStat,
+.printRoot .internalExportShell .summaryItem,
+.printRoot .internalExportShell .pricingMatrixRow,
+.printRoot .internalExportShell .diagnosticCard,
+.printRoot .internalExportShell .materialLineCard,
+.printRoot .internalExportShell .confidenceCell,
+.printRoot .internalExportShell .explainCell,
+.printRoot .internalExportShell .pricingMiniCell,
+.printRoot .internalExportShell .diagnosticRow,
+.printRoot .internalExportShell .insightRow,
+.printRoot .internalExportShell .quoteStep,
+.printRoot .internalExportShell .heroMetric,
+.printRoot .internalExportShell .kpi,
+.printRoot .internalExportShell .callout,
+.printRoot .internalExportShell [style*="background:#fbfcfe"]{
+  background:#ffffff !important;
+  color:#1b2430 !important;
+  border-color:#e7e9ef !important;
+  box-shadow:none !important;
 }
 
-#exportPreview[data-export-mode="internal"] .internalExportShell h1,
-#exportPreview[data-export-mode="internal"] .internalExportShell h2,
-#exportPreview[data-export-mode="internal"] .internalExportShell h3,
-#exportPreview[data-export-mode="internal"] .internalExportShell strong,
-#exportPreview[data-export-mode="internal"] .internalExportShell .title,
-#exportPreview[data-export-mode="internal"] .internalExportShell [style*="color:#1b2430"]{
-  color:#ffffff !important;
+.printRoot .internalExportShell,
+.printRoot .internalExportShell *{
+  color:#1b2430 !important;
+  font-family:Inter,Arial,sans-serif !important;
 }
 
-#exportPreview[data-export-mode="internal"] .internalExportShell .muted,
-#exportPreview[data-export-mode="internal"] .internalExportShell [style*="color:#5f6b7a"]{
-  color:#A9B4C7 !important;
+.printRoot .internalExportShell .muted,
+.printRoot .internalExportShell [style*="color:#5f6b7a"]{
+  color:#5f6b7a !important;
 }
 
-#exportPreview[data-export-mode="internal"] .internalExportShell table,
-#exportPreview[data-export-mode="internal"] .internalExportShell th,
-#exportPreview[data-export-mode="internal"] .internalExportShell td,
-#exportPreview[data-export-mode="internal"] .internalExportShell .divider,
-#exportPreview[data-export-mode="internal"] .internalExportShell [style*="border-bottom:1px solid #e9edf3"],
-#exportPreview[data-export-mode="internal"] .internalExportShell [style*="border:1px solid #e9edf3"]{
-  border-color:#2A3140 !important;
-  color:#E5E7EB !important;
+.printRoot .internalExportShell table,
+.printRoot .internalExportShell th,
+.printRoot .internalExportShell td,
+.printRoot .internalExportShell .divider,
+.printRoot .internalExportShell [style*="border-bottom:1px solid #e9edf3"],
+.printRoot .internalExportShell [style*="border:1px solid #e9edf3"]{
+  border-color:#e7e9ef !important;
+  color:#1b2430 !important;
 }
 
+.printRoot .internalExportShell .status.good{
+  background:rgba(33,192,122,.10) !important;
+  color:#166534 !important;
+  border:1px solid rgba(33,192,122,.28) !important;
+}
+.printRoot .internalExportShell .status.warn{
+  background:rgba(245,158,11,.10) !important;
+  color:#92400e !important;
+  border:1px solid rgba(245,158,11,.28) !important;
+}
+.printRoot .internalExportShell .status.bad{
+  background:rgba(239,68,68,.10) !important;
+  color:#991b1b !important;
+  border:1px solid rgba(239,68,68,.28) !important;
+}
 </style>
   `;
   printWindow.document.open();
@@ -4426,6 +4574,11 @@ function prepareExport(){
     console.warn('Stored settings parse failed during export, using live settings instead.', err);
     s = collectSettings();
   }
+  const liveSettings = collectSettings();
+  s = {
+    ...s,
+    company: { ...(s.company || {}), ...(liveSettings.company || {}) }
+  };
   const exportMode = byId('exportMode')?.value || 'customer';
   const optionResults = state.quoteOptions.map(o => o.result).filter(Boolean);
   const active = window.lastQuoteComputed || optionResults[0] || {};
